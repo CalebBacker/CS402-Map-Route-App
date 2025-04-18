@@ -58,8 +58,6 @@ In the implementation of our Rest Stop mobile application, we chose to use React
 
 For the backend, Firebase was selected due to its seamless integration with mobile apps, generous free-tier (especially valuable for student projects), and real-time capabilities. Our Firebase services include:
 
-      \`
-
 * **Firestore** to store rest stop metadata (location, amenities, ratings).
 
 * **Firebase Authentication** for managing user identity (anonymous or email-based logins).
