@@ -164,3 +164,7 @@ Users can view and submit reviews for any rest stop. Each review includes:
 The UI allows filtering reviews by recency or rating. A simple submission form with validation ensures only complete and meaningful reviews are accepted. Only signed-in users (anonymous or email-based) can submit reviews, while all users can read them.
 
 ![UI Mockup](uimockup.png "UI Mockup")
+
+# Works Cited
+
+Our team generated the initial prototype using [Bolt dot new](bolt.new)
