@@ -167,4 +167,4 @@ The UI allows filtering reviews by recency or rating. A simple submission form w
 
 # Works Cited
 
-Our team generated the initial prototype using [Bolt dot new](bolt.new)
+Our team generated the initial prototype using [Bolt dot new](https://www.bolt.new)
