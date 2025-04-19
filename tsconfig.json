@@ -2,15 +2,27 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
+    "baseUrl": ".",
     "paths": {
-      "@/*": [ "./*"]
-    }
+      "@/*": [ "./*"],
+      "components/*": ["src/components/*"],
+      "hooks/*":      ["src/hooks/*"],
+      "constants/*":  ["src/constants/*"],
+      "services/*":   ["src/services/*"]
+    },
+    "allowJs": true
   },
   "include": [
     "**/*.ts",
+    "src", 
+    "app",
+    "components",
+    "declarations.d.ts",
+    "hooks",
+    "scripts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "nativewind-env.d.ts"
-  ]
+, "src/services/fetchRestStops.js"  ]
 }

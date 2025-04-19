@@ -28,7 +28,7 @@ const Marker = Platform.select({
 export default function MapScreen() {
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const mapRef = useRef(null);
+  const mapRef = useRef<any>(null);
   const router = useRouter();
 
   useEffect(() => {
