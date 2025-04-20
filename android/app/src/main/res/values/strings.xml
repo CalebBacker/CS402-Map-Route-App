@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MapRouteApp</string>
+    <string name="expo_push_notification_channel_name">Route Notifications</string>
+    <string name="location_permission_description">Required for route navigation</string>
+</resources>
