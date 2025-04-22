@@ -2,6 +2,7 @@
 import { useState, useCallback } from 'react';
 import { debounce } from '../utils/debounce';
 import { getNearbyRestAreas, getRestAreasAlongRoute } from '../config/map.config';
+import { fetchRestStops } from '../scripts/fetchRestStops';
 
 export interface RestStop {
   id: string;
