@@ -1,15 +1,46 @@
-import { StyleSheet, View, Text, Switch, TouchableOpacity } from 'react-native';
-import { useState } from 'react';
-import { ChevronRight } from 'lucide-react-native';
+// app/(tabs)/settings.tsx
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, Switch, TouchableOpacity, Alert, ScrollView } from 'react-native';
+import { ChevronRight, MapPin, Trash2, LogOut } from 'lucide-react-native';
+import { useRouteStore } from '../../stores/routeStore';
+import { useLocationStore } from '../../stores/locationStore';
 
 export default function SettingsScreen() {
   const [showGasStations, setShowGasStations] = useState(true);
   const [showRestaurants, setShowRestaurants] = useState(true);
   const [showCoffeeShops, setShowCoffeeShops] = useState(true);
   const [useMetricSystem, setUseMetricSystem] = useState(false);
+  
+  const { clearRoutes } = useRouteStore();
+  const { resetLocations } = useLocationStore();
+
+  // Clear all saved routes after confirmation
+  const handleClearAllData = () => {
+    Alert.alert(
+      'Clear All Data',
+      'Are you sure you want to clear all saved routes and preferences? This action cannot be undone.',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        { 
+          text: 'Clear All', 
+          style: 'destructive',
+          onPress: () => {
+            clearRoutes();
+            resetLocations();
+            // Reset preferences
+            setShowGasStations(true);
+            setShowRestaurants(true);
+            setShowCoffeeShops(true);
+            setUseMetricSystem(false);
+            Alert.alert('Success', 'All data has been cleared.');
+          }
+        }
+      ]
+    );
+  };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <Text style={styles.title}>Settings</Text>
       
       <View style={styles.section}>
@@ -57,6 +88,20 @@ export default function SettingsScreen() {
       </View>
 
       <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Data Management</Text>
+        <TouchableOpacity 
+          style={[styles.linkOption, styles.dangerOption]}
+          onPress={handleClearAllData}
+        >
+          <View style={styles.optionWithIcon}>
+            <Trash2 size={20} color="#e74c3c" />
+            <Text style={[styles.optionText, styles.dangerText]}>Clear All Data</Text>
+          </View>
+          <ChevronRight size={20} color="#e74c3c" />
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.section}>
         <Text style={styles.sectionTitle}>About</Text>
         <TouchableOpacity style={styles.linkOption}>
           <Text style={styles.optionText}>Privacy Policy</Text>
@@ -71,7 +116,7 @@ export default function SettingsScreen() {
           <ChevronRight size={20} color="#666" />
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -103,14 +148,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 8,
   },
+  optionWithIcon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   linkOption: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 12,
   },
+  dangerOption: {
+    borderColor: '#ffeeee',
+    backgroundColor: '#fff5f5',
+  },
   optionText: {
     fontSize: 16,
     color: '#333',
+    marginLeft: 8,
+  },
+  dangerText: {
+    color: '#e74c3c',
   },
 });
